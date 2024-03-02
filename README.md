@@ -1,11 +1,22 @@
-# typescript-sandbox
 
-Para la parte de cada módulo en la que te planteamos ejercicios con JavaScript puedes usar este sandbox.
+Apartado 1:
 
-Pasos:
+a) Extraer la lista de pacientes que estén asignados a la especialidad de pediatría.
+b) Extraer la lista de pacientes asignados a Pediatría y que tengan una edad menor de 10 años.
 
-- Clonate el proyecto.
-- Instala las dependencias con `npm install`.
-- Ejecuta el sandbox con `npm run dev`.
-- Abre el navegador en `http://localhost:5173/` (si ese puerto no te funciona, mira en la consola donde has hecho el build, puede que este ocupado y se haya abierto en otro puerto).
-- Puedes empezar a meter tu código en el fichero:
+Apartado 2:
+
+Activar el protocolo de urgencia si cualquier de los pacientes tiene un ritmo cardiaco superior a 100 pulsaciones por minuto y una temperatura corporal superior a 39 grados.
+
+Apartado 3:
+
+El pediatra no puede atender pacientes, reasignar sus pacientes al medico de familia.
+
+Apartado 4:
+
+Queremos saber si podemos mandar al Pediatra a casa (si no tiene pacientes asignados), comprobar si en la lista hay algún paciente asignado a pediatría.
+
+Apartado 5:
+
+Calcular el número total de pacientes que están asignados a cada especialidad.
+
