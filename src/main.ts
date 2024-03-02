@@ -1,57 +1,190 @@
-import "./style.css";
 
-const estiloNombreGrupo : string = "font-style: bold; font-size: 18px; background-color: green";
+type Especialidad = "Médico de familia" | "Pediatra" | "Cardiólogo";
 
-const grupo1 : string = "The Beatles";
-const grupo2 : string = "Queen";
-const grupo3 : string = "AC DC";
-const grupo4 : string = "Ludwig van Beethoven"; 
-const grupo5 : string = "The Rolling Stones";
+interface Pacientes {
+  id: number;
+  nombre: string;
+  apellidos: string;
+  sexo: string;
+  temperatura: number;
+  frecuenciaCardiaca: number;
+  especialidad: Especialidad;
+  edad: number;
+}
 
-const generoMusical1 : string = "🎵 Pop Rock";
-const generoMusical2 : string = "🎸 Rock";
-const generoMusical3 : string = "🤘 Hard Rock";
-const generoMusical4 : string = "🎼 Clásica"; 
+const pacientes: Pacientes[] = [
+  {
+    id: 1,
+    nombre: "John",
+    apellidos: "Doe",
+    sexo: "Male",
+    temperatura: 36.8,
+    frecuenciaCardiaca: 80,
+    especialidad: "Médico de familia",
+    edad: 44,
+  },
+  {
+    id: 2,
+    nombre: "Jane",
+    apellidos: "Doe",
+    sexo: "Female",
+    temperatura: 36.8,
+    frecuenciaCardiaca: 70,
+    especialidad: "Médico de familia",
+    edad: 43,
+  },
+  {
+    id: 3,
+    nombre: "Junior",
+    apellidos: "Doe",
+    sexo: "Male",
+    temperatura: 36.8,
+    frecuenciaCardiaca: 90,
+    especialidad: "Pediatra",
+    edad: 8,
+  },
+  {
+    id: 4,
+    nombre: "Mary",
+    apellidos: "Wien",
+    sexo: "Female",
+    temperatura: 36.8,
+    frecuenciaCardiaca: 120,
+    especialidad: "Médico de familia",
+    edad: 20,
+  },
+  {
+    id: 5,
+    nombre: "Scarlett",
+    apellidos: "Somez",
+    sexo: "Female",
+    temperatura: 36.8,
+    frecuenciaCardiaca: 110,
+    especialidad: "Cardiólogo",
+    edad: 30,
+  },
+  {
+    id: 6,
+    nombre: "Brian",
+    apellidos: "Kid",
+    sexo: "Male",
+    temperatura: 39.8,
+    frecuenciaCardiaca: 80,
+    especialidad: "Pediatra",
+    edad: 11,
+  },
+];
 
-const activo : boolean = true;
-const inactivo : boolean = false;
+//<<<<<<<<<<<<<<<< Apartado 1-a >>>>>>>>>>>>>>>>>>
 
-const fundacionBeatles : number = 1960;
-const FundacionQueen : number = 1970;
-const FundacionAcDc : number = 1973;
-const FundacionBeethoven : number = 1770;
-const FundacionStones : number = 1962;
+const obtenPacientesAsignadosAPediatria = (pacientes: Pacientes[]): Pacientes[] => {
+  let listaPacientesPediatria: Pacientes[] = [];
 
+  for (let i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].especialidad === "Pediatra") {
+      listaPacientesPediatria = [...listaPacientesPediatria, pacientes[i]];
+    };
+  };
+  return listaPacientesPediatria;
+};
 
-console.log(
-    `%c${grupo1}`,
-    estiloNombreGrupo,
-    `Año de fundación: ${fundacionBeatles} / Activo: ${activo} / ${generoMusical1}`
-);
+const pacientesPediatra = obtenPacientesAsignadosAPediatria(pacientes);
+console.log(pacientesPediatra);
 
-console.log(
-    `%c${grupo2}`,
-    estiloNombreGrupo,
-    `Año de fundación: ${FundacionQueen} / Activo: ${inactivo} / ${generoMusical2}`
-);
+//<<<<<<<<<<<<<<< <Apartado 1-b >>>>>>>>>>>>>>>>>>>>>
 
-console.log(
-    `%c${grupo3}`,
-    estiloNombreGrupo,
-    `Año de fundación: ${FundacionAcDc} / Activo: ${activo} / ${generoMusical3}`
-);
+const obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios = (pacientes: Pacientes[]): Pacientes[] => {
+  let pacientesMenoresDeDiezAños: Pacientes[] = [];
+  let i = 0;
 
-console.log(
-    `%c${grupo4}`,
-    estiloNombreGrupo,
-    `Año de fundación: ${FundacionBeethoven} / Activo: ${inactivo} / ${generoMusical4}`
-);
+  while (i < pacientes.length) {
+    if (pacientes[i].edad < 10) {
+      pacientesMenoresDeDiezAños = [...pacientesMenoresDeDiezAños, pacientes[i]];
+    };
+    i++;
+  };
+  return pacientesMenoresDeDiezAños;
+};
 
-console.log(
-    `%c${grupo5}`,
-    estiloNombreGrupo,
-    `Año de fundación: ${FundacionStones} / Activo: ${activo} / ${generoMusical2}`
-);
+const edadMenordeDiez = obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes);
+console.log(edadMenordeDiez);
 
+//<<<<<<<<<<<<<<<< Apartado 2 >>>>>>>>>>>>>>>>>>>>
 
+const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
+  let activarProctolo: boolean = false;
 
+  for (let i = 0; i< pacientes.length; i++) {
+    if (pacientes[i].temperatura > 100 && pacientes[i].frecuenciaCardiaca > 100) {
+      activarProctolo = true;
+    };
+  };
+  return activarProctolo;
+};
+
+const protocoloEmergencia = activarProtocoloUrgencia(pacientes);
+console.log("¿Hace falta activar el protocolo de urgencia?:", protocoloEmergencia);
+
+//<<<<<<<<<<<<<<<<<<< Apartado 3 >>>>>>>>>>>>>>>>>>>>
+
+const reasignaPacientesAMedicoFamilia = (pacientes: Pacientes[]): Pacientes[] => {
+  for (let i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].especialidad === "Pediatra") {
+      pacientes[i].especialidad = "Médico de familia";
+    };
+  };
+  return pacientes;
+};
+
+const pacientesReasignados = reasignaPacientesAMedicoFamilia(pacientes)
+console.log(pacientesReasignados);
+
+//<<<<<<<<<<<<<<<<<< Apartado 4 >>>>>>>>>>>>>>>>>>
+
+let hayPacientes = true;
+
+const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
+  for (let i = 0; i < pacientes.length; i++) {
+    if (pacientes[i].especialidad === "Pediatra") {
+      hayPacientes = false;
+    };
+  };
+  return hayPacientes;
+};
+
+console.log("¿Podemos enviar a casa al pediatra?", hayPacientes);//No hay pacientes porque en el apratado anterior lo hice mutable
+
+//<<<<<<<<<<<<<<<<<<< Apartado 5 >>>>>>>>>>>>>>>>>>>
+
+interface NumeroPacientesPorEspecialidad {
+  medicoDeFamilia: number;
+  pediatria: number;
+  cardiologia: number;
+};
+
+let totalPacientes: NumeroPacientesPorEspecialidad = 
+{
+  medicoDeFamilia: 0,
+  pediatria: 0,
+  cardiologia: 0,
+};
+
+const cuentaPacientesPorEspecialidad = (pacientes: Pacientes[]): NumeroPacientesPorEspecialidad => {
+  for (let i = 0; i < pacientes.length; i++) {
+    switch (pacientes[i].especialidad) {
+      case "Médico de familia":
+      totalPacientes.medicoDeFamilia++;
+      break;
+      case "Pediatra":
+      totalPacientes.pediatria++;
+      break;
+      case "Cardiólogo":
+      totalPacientes.cardiologia++;
+      break;
+    };
+  };
+  return totalPacientes;
+};
+
+const numeroTotalPacientes = cuentaPacientesPorEspecialidad(pacientes);
+console.log(numeroTotalPacientes);
